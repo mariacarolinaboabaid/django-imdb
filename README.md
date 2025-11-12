@@ -1,3 +1,7 @@
 # django-imdb
 
-1. Activating the virtual environment: ```source venv/bin/activate```
+#### - Activating the virtual environment: ```source venv/bin/activate```
+
+#### - Starting local server: ```python manage.py runserver```
+
+
