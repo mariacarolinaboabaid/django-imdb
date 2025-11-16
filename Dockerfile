@@ -11,12 +11,13 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Copy the folders inside the container
-COPY ./app_imdb /app_imdb 
-COPY ./scripts /scripts
-COPY ./requirements.txt /requirements.txt
+COPY ./app_imdb /django-imdb/app_imdb
+COPY ./scripts /django-imdb/scripts
+COPY ./requirements.txt /django-imdb/requirements.txt
+COPY ./manage.py /django-imdb/manage.py
 
 # Go inside of the folder in the container
-WORKDIR /app-imdb 
+WORKDIR /django-imdb
 
 EXPOSE 8000
 
@@ -31,10 +32,10 @@ EXPOSE 8000
 #
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /requirements.txt && \
+  /venv/bin/pip install -r /django-imdb/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   chown -R duser:duser /venv && \
-  chmod -R +x /scripts
+  chmod -R +x /django-imdb/scripts
 
 # Adds the folder scripts e venv/bin in the $PATH of the container
 #
@@ -45,7 +46,7 @@ RUN python -m venv /venv && \
 # By setting /scripts:/venv/bin:$PATH, you prioritize these directories in the search order.
 # Therefore, if there are commands with the same name, the one in /scripts will be executed first.
 #
-ENV PATH="/scripts:/venv/bin:$PATH"
+ENV PATH="/django-imdb/scripts:/venv/bin:$PATH"
 
 # Change the user to the user
 USER duser

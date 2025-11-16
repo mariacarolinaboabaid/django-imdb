@@ -8,14 +8,15 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./app_imdb:/app_imdb 
+      - ./app_imdb:/django-imdb/app_imdb 
     env_file:
       - ./.env
     depends_on:
       - psql
+
   psql:
     container_name: psql
-    image: postgres:13-alpine
+    image: postgres:14-alpine3.22
     volumes:
       - ./data/postgres/data:/var/lib/postgresql/data/
     env_file:

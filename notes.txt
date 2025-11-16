@@ -1,0 +1,5 @@
+### APP ###
+
+- módulo independente que executa uma função específica de uma parte do sistema, como modelos de dados, regras de negócio, interfaces e URLs relacionadas àquela funcionalidade
+
+- '''python manage.py startapp _app_name'''
